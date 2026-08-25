@@ -18,6 +18,7 @@
   <nav>
     <a href="#">About</a>
     <a href="#">Skills</a>
+    <a href="#">Projects</a>
     <a href="#">Contact</a>
   </nav>
 
@@ -32,9 +33,10 @@
       </p>
     </section>
 
+    <button type="button" id="toggle-skills">Hide Skills</button>
     <section id="skills">
       <h2>Skills</h2>
-      <ul>
+      <ul id="skills-list">
         <li>AI Mastery</li>
         <li>Digital Art Creation</li>
         <li>Script Writing</li>
@@ -42,6 +44,25 @@
         <li>Clothing Design</li>
         <li>Video Gaming</li>
       </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <form id="project-form">
+        <div>
+          <label for="project-name">Project Name</label>
+          <input type="text" id="project-name" name="project-name" required>
+        </div>
+
+        <div>
+          <label for="project-description">Description</label>
+          <textarea id="project-description" name="project-description" required></textarea>
+        </div>
+
+        <button type="submit">Add Project</button>
+      </form>
+
+      <div id="projects-list"></div>
     </section>
 
     <section id="contact">
@@ -91,6 +112,77 @@
     } else {
       greetingEl.textContent = 'Good evening';
     }
+
+    const toggleSkillsButton = document.getElementById('toggle-skills');
+    const skillsList = document.getElementById('skills-list');
+
+    toggleSkillsButton.addEventListener('click', () => {
+      const isHidden = skillsList.style.display === 'none';
+
+      skillsList.style.display = isHidden ? '' : 'none';
+      toggleSkillsButton.textContent = isHidden ? 'Hide Skills' : 'Show Skills';
+    });
+
+    const projects = [
+      {
+        name: 'BlackWater Ent Platform',
+        description: 'A creative social site where artists use AI tools, showcase work, and collaborate.'
+      },
+      {
+        name: 'AI Art Toolkit',
+        description: 'A set of AI-assisted tools that speed up a digital artist\'s creative workflow.'
+      }
+    ];
+
+    const projectForm = document.getElementById('project-form');
+    const projectNameInput = document.getElementById('project-name');
+    const projectDescriptionInput = document.getElementById('project-description');
+    const projectsList = document.getElementById('projects-list');
+
+    function renderProjects() {
+      projectsList.innerHTML = '';
+
+      projects.forEach((project, index) => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.className = 'delete-project';
+        deleteButton.textContent = '×';
+        deleteButton.setAttribute('aria-label', `Delete ${project.name}`);
+        deleteButton.addEventListener('click', () => {
+          projects.splice(index, 1);
+          renderProjects();
+        });
+
+        const heading = document.createElement('h3');
+        heading.textContent = project.name;
+
+        const description = document.createElement('p');
+        description.textContent = project.description;
+
+        card.appendChild(deleteButton);
+        card.appendChild(heading);
+        card.appendChild(description);
+        projectsList.appendChild(card);
+      });
+    }
+
+    projectForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = projectNameInput.value.trim();
+      const description = projectDescriptionInput.value.trim();
+
+      if (!name || !description) return;
+
+      projects.push({ name, description });
+      projectForm.reset();
+      renderProjects();
+    });
+
+    renderProjects();
   </script>
 
 </body>
