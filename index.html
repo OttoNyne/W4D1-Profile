@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <h2 id="greeting"></h2>
+
   <header>
     <h1>Octavious "Otto" Walker</h1>
     <p>Builder of an AI ecosystem for creatives and small businesses</p>
@@ -77,6 +79,19 @@
   <footer>
     <p>&copy; 2026 Octavious Walker. All rights reserved.</p>
   </footer>
+
+  <script>
+    const hour = new Date().getHours();
+    const greetingEl = document.getElementById('greeting');
+
+    if (hour < 12) {
+      greetingEl.textContent = 'Good morning';
+    } else if (hour < 17) {
+      greetingEl.textContent = 'Good afternoon';
+    } else {
+      greetingEl.textContent = 'Good evening';
+    }
+  </script>
 
 </body>
 </html>
