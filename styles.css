@@ -1,0 +1,178 @@
+/* ============================
+   Variables & Base
+   ============================ */
+:root {
+  --color-bg: #f5f4f1;
+  --color-text: #1e1e1e;
+  --color-accent: #3a6b6d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+h1, h2 {
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+/* ============================
+   Header
+   ============================ */
+header {
+  margin-bottom: 2rem;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+}
+
+/* ============================
+   Nav
+   ============================ */
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+nav a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover,
+nav a:focus {
+  text-decoration: underline;
+}
+
+/* ============================
+   Sections (general)
+   ============================ */
+section {
+  margin-bottom: 3rem;
+}
+
+/* ============================
+   Skills grid
+   ============================ */
+#skills ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+#skills li {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+/* ============================
+   Contact form
+   ============================ */
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+#contact label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+#contact input,
+#contact select,
+#contact textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font: inherit;
+  color: var(--color-text);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+}
+
+#contact textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+#contact button {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+#contact button:hover,
+#contact button:focus {
+  background-color: #2e5556;
+}
+
+/* ============================
+   Footer
+   ============================ */
+footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* ============================
+   Responsive: tablet/desktop (768px+)
+   Mobile-first: everything above this
+   block is the phone default.
+   ============================ */
+@media (min-width: 768px) {
+  body {
+    padding: 2rem 1rem;
+    max-width: 65ch;
+  }
+
+  nav {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  #skills ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
